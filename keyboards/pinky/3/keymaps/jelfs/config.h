@@ -20,6 +20,7 @@
 
 /* Select hand configuration */
 
+#define SPLIT_USB_DETECT
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
