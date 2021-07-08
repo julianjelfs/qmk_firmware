@@ -26,12 +26,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
       KC_TAB,         KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_EQL,
       KC_ESC,         KC_A,   LT(2, KC_S),   LT(1, KC_D),   LSFT_T(KC_F),   LT(3, KC_G),                  LT(3, KC_H), RSFT_T(KC_J), LT(1, KC_K), LT(2, KC_L), KC_SCLN, KC_QUOT,
-      LCTL_T(KC_NUBS), KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_CAPS,  KC_VOLD,        KC_VOLU, KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NUHS,
-                                    _______, KC_LCTL, KC_LGUI, KC_BSPC, KC_DEL,         KC_ENT, KC_SPC,  KC_RCTL,  KC_GRV, _______
+      LCTL_T(KC_GRV), KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,  KC_CAPS,  KC_VOLD,        KC_VOLU, KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NUHS,
+                                    _______, KC_LCTL, KC_LGUI, KC_BSPC, KC_DEL,         KC_ENT, KC_SPC,  KC_RCTL,  KC_NUBS, _______
     ),
     [_ONE] = LAYOUT(
-      LCTL(KC_GRV), KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_MINS,                                      _______, KC_7, KC_8, KC_9, KC_EQL, KC_GRV,
-      LGUI(KC_GRV), _______, _______, KC_LBRC, KC_RBRC, KC_UNDS,                                      _______, KC_4, KC_5, KC_6, _______, _______,
+      LCTL(KC_NUBS), KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_MINS,                                      _______, KC_7, KC_8, KC_9, KC_EQL, KC_NUBS,
+      LGUI(KC_NUBS), _______, _______, KC_LBRC, KC_RBRC, KC_UNDS,                                      _______, KC_4, KC_5, KC_6, _______, _______,
       _______, _______, _______, KC_LPRN, KC_RPRN, KC_TILD, _______, _______,  _______, _______, _______, KC_1,  KC_2, KC_3,  _______, _______,
                                  _______, _______, _______, _______, _______,  _______,  _______, KC_0, _______, _______
     ),
