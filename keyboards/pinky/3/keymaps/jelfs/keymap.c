@@ -51,7 +51,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x7_4(
-        KC_TAB          , KC_Q   , KC_W        , KC_E       , KC_R        , KC_T          , KC_LSFT            ,       KC_RSFT  , KC_Y        , KC_U           , KC_I       , KC_O   , KC_P   , KC_EQL ,
+        KC_TAB          , KC_Q   , KC_W        , KC_E       , KC_R        , KC_T          , KC_HOME            ,       KC_END   , KC_Y        , KC_U           , KC_I       , KC_O   , KC_P   , KC_EQL ,
         KC_ESC          , KC_A   , LT(2, KC_S) , LT(1, KC_D), LSFT_T(KC_F), LT(3, KC_G)   , KC_VOLD            ,       KC_VOLU  , LT(3, KC_H) , RSFT_T(KC_J)   , LT(1, KC_K), LT(2, KC_L)     , KC_SCLN, KC_QUOT,
         LCTL_T(KC_NUBS) , KC_Z   , KC_X        , KC_C       , KC_V        , KC_B          , TD(TD_NOTHING_CAPS),       KC_MPLY  , KC_N        , KC_M           , KC_COMM    , KC_DOT , KC_SLSH, KC_NUHS,
                                                  KC_LALT    , KC_LGUI     , KC_BSPC       , KC_DEL             ,       KC_ENT   , KC_SPC      , KC_RCTL        , KC_GRV
