@@ -33,6 +33,45 @@ enum layer_names {
     _THREE
 };
 
+// bool right_shift_is_pressed = false;
+// bool left_shift_is_pressed = false;
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//   switch(keycode) {
+//     // This branch will replace the Backspace key with the Delete key if Right Shift is held
+//     case KC_BSPC: 
+//       if (record->event.pressed) {
+//         if (right_shift_is_pressed) {
+//           register_code(KC_DEL);
+//           unregister_code(KC_DEL);
+//         } else {
+//           register_code(KC_BSPC);
+//           unregister_code(KC_BSPC);
+//         }
+//       }
+//       return false;
+//     // This branch will replace the Space key with the Enter key if Left Shift is held
+//     case KC_SPC: 
+//       if (record->event.pressed) {
+//         if (left_shift_is_pressed) {
+//           register_code(KC_ENT);
+//           unregister_code(KC_ENT);
+//         } else {
+//           register_code(KC_SPC);
+//           unregister_code(KC_SPC);
+//         }
+//       }
+//       return false;
+//     case KC_RSFT: 
+//       right_shift_is_pressed = record->event.pressed;
+//       break;
+//     case KC_LSFT: 
+//       left_shift_is_pressed = record->event.pressed;
+//       break;
+//   }
+//   return true;
+// }
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x7_4(
         KC_TAB          , KC_Q   , KC_W        , KC_E       , KC_R        , KC_T          , _______            ,       _______  , KC_Y        , KC_U           , KC_I       , KC_O   , KC_P   , KC_EQL ,
