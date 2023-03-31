@@ -33,48 +33,25 @@ enum layer_names {
     _THREE
 };
 
-// bool right_shift_is_pressed = false;
-// bool left_shift_is_pressed = false;
-
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//   switch(keycode) {
-//     // This branch will replace the Backspace key with the Delete key if Right Shift is held
-//     case KC_BSPC: 
-//       if (record->event.pressed) {
-//         if (right_shift_is_pressed) {
-//           register_code(KC_DEL);
-//           unregister_code(KC_DEL);
-//         } else {
-//           register_code(KC_BSPC);
-//           unregister_code(KC_BSPC);
-//         }
-//       }
-//       return false;
-//     // This branch will replace the Space key with the Enter key if Left Shift is held
-//     case KC_SPC: 
-//       if (record->event.pressed) {
-//         if (left_shift_is_pressed) {
-//           register_code(KC_ENT);
-//           unregister_code(KC_ENT);
-//         } else {
-//           register_code(KC_SPC);
-//           unregister_code(KC_SPC);
-//         }
-//       }
-//       return false;
-//     case KC_RSFT: 
-//       right_shift_is_pressed = record->event.pressed;
-//       break;
-//     case KC_LSFT: 
-//       left_shift_is_pressed = record->event.pressed;
-//       break;
-//   }
-//   return true;
-// }
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch(keycode) {
+    // NOTE - we can't do the same thing for the enter key because SHIFT-ENTER already commonly has a special meaning
+    // we *could* swap round so we have to shift space but that's horrible.
+    case KC_BSPC: ;
+      bool right_shift = get_mods() & MOD_BIT(KC_RSFT);
+      if (record->event.pressed) {
+        right_shift ? register_code(KC_DEL) : register_code(KC_BSPC);
+      } else {
+        right_shift ? unregister_code(KC_DEL) : unregister_code(KC_BSPC);
+      }
+      return false;
+  }
+  return true;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x7_4(
-        KC_TAB          , KC_Q   , KC_W        , KC_E       , KC_R        , KC_T          , _______            ,       _______  , KC_Y        , KC_U           , KC_I       , KC_O   , KC_P   , KC_EQL ,
+        KC_TAB          , KC_Q   , KC_W        , KC_E       , KC_R        , KC_T          , KC_LSFT            ,       KC_RSFT  , KC_Y        , KC_U           , KC_I       , KC_O   , KC_P   , KC_EQL ,
         KC_ESC          , KC_A   , LT(2, KC_S) , LT(1, KC_D), LSFT_T(KC_F), LT(3, KC_G)   , KC_VOLD            ,       KC_VOLU  , LT(3, KC_H) , RSFT_T(KC_J)   , LT(1, KC_K), LT(2, KC_L)     , KC_SCLN, KC_QUOT,
         LCTL_T(KC_NUBS) , KC_Z   , KC_X        , KC_C       , KC_V        , KC_B          , TD(TD_NOTHING_CAPS),       KC_MPLY  , KC_N        , KC_M           , KC_COMM    , KC_DOT , KC_SLSH, KC_NUHS,
                                                  KC_LALT    , KC_LGUI     , KC_BSPC       , KC_DEL             ,       KC_ENT   , KC_SPC      , KC_RCTL        , KC_GRV
