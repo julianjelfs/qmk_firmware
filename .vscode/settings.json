@@ -6,7 +6,8 @@
     "files.exclude": {
         "**/.build": true,
         "**/*.hex": true,
-        "**/*.bin": true
+        "**/*.bin": true,
+        "**/*.uf2": true
     },
     "files.associations": {
         "*.h": "c",
@@ -23,5 +24,12 @@
         "editor.trimAutoWhitespace": false,
         "files.trimTrailingWhitespace": false
     },
+<<<<<<< HEAD
     "C_Cpp.errorSquiggles": "Disabled"
+=======
+    "python.formatting.provider": "yapf",
+    "[json]": {
+	    "editor.formatOnSave": false
+    }
+>>>>>>> fb706f42a2f02655f4a231edf6661ed23e70321d
 }
