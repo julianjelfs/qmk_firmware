@@ -18,4 +18,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define PERMISSIVE_HOLD 
 // #define TAPPING_TERM 280
-#define IGNORE_MOD_TAP_INTERRUPT

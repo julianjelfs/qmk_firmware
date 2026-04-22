@@ -22,7 +22,7 @@ enum {
     TD_NOTHING_CAPS,
 };
  
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     // Tap once does nothing, twice for Caps Lock - prevents accidental capslock
     [TD_NOTHING_CAPS] = ACTION_TAP_DANCE_DOUBLE(_______, KC_CAPS),
 };
@@ -97,4 +97,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     //|----------------+----------------+----------------|                     |----------------+----------------+----------------| 
     )
 };
-
