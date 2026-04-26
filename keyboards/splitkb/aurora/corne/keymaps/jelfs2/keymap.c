@@ -25,13 +25,28 @@ enum layer_names {
     _THREE
 };
 
+#define A_ALT    LALT_T(KC_A)
+#define S_L2     LT(_TWO, KC_S)
+#define D_L1     LT(_ONE, KC_D)
+#define F_SFT    LSFT_T(KC_F)
+#define G_L3     LT(_THREE, KC_G)
+#define H_L3     LT(_THREE, KC_H)
+#define J_SFT    RSFT_T(KC_J)
+#define K_L1     LT(_ONE, KC_K)
+#define L_L2     LT(_TWO, KC_L)
+#define SC_ALT   RALT_T(KC_SCLN)
+#define BSPC_GUI LGUI_T(KC_BSPC)
+#define DEL_CTL  LCTL_T(KC_DEL)
+#define ENT_GUI  RGUI_T(KC_ENT)
+#define SPC_CTL  RCTL_T(KC_SPC)
+
 enum combo_events {
     DF_TAB,
     JK_ESC
 };
 
-const uint16_t PROGMEM df_combo[] = {LGUI_T(KC_D), LSFT_T(KC_F), COMBO_END};
-const uint16_t PROGMEM jk_combo[] = {RSFT_T(KC_J), RGUI_T(KC_K), COMBO_END};
+const uint16_t PROGMEM df_combo[] = {D_L1, F_SFT, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {J_SFT, K_L1, COMBO_END};
 
 combo_t key_combos[] = {
     [DF_TAB] = COMBO(df_combo, KC_TAB),
@@ -50,6 +65,19 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case J_SFT:
+            if (!record->event.pressed && record->tap.count > 0 && ((get_mods() | get_oneshot_mods()) & MOD_MASK_GUI)) {
+                tap_code(KC_TAB);
+                return false;
+            }
+            break;
+    }
+
+    return true;
+}
+
 // clang-format off
 const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT_split_3x6_3(
     'L', 'L', 'L', 'L', 'L', 'L',                        'R', 'R', 'R', 'R', 'R', 'R',
@@ -63,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
     _______         , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           ,                      KC_Y           , KC_U           , KC_I           , KC_O            , KC_P           , _______,
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
-    _______         , LCTL_T(KC_A)   , LALT_T(KC_S)   , LGUI_T(KC_D)   , LSFT_T(KC_F)   , LT(_THREE, KC_G)    ,                 LT(_THREE, KC_H), RSFT_T(KC_J)   , RGUI_T(KC_K)   , RALT_T(KC_L)   , RCTL_T(KC_SCLN), _______,
+    _______         , A_ALT          , S_L2           , D_L1           , F_SFT          , G_L3           ,                      H_L3           , J_SFT          , K_L1           , L_L2            , SC_ALT         , _______,
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
     _______         , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B           ,                      KC_N           , KC_M           , KC_COMM        , KC_DOT         , KC_SLSH         , _______,
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
-                                                       LT(_ONE, KC_BSPC), LT(_TWO, KC_DEL), _______        ,                    _______        , LT(_TWO, KC_ENT), LT(_ONE, KC_SPC)
+                                                       _______         , BSPC_GUI       , DEL_CTL        ,                    ENT_GUI        , SPC_CTL        , _______
                                                     //|----------------+----------------+----------------|                     |----------------+----------------+----------------|
     ),
     [_ONE] = LAYOUT_split_3x6_3(
@@ -78,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
     _______         , KC_NUBS        , _______        , KC_LPRN        , KC_RPRN        , _______        ,                      KC_GRV         , KC_1           , KC_2           , KC_3           , KC_NUHS         , _______,
 //|-----------------+----------------+----------------+----------------+----------------+----------------|                     |----------------+----------------+----------------+----------------+----------------+----------------|
-                                                       _______         , _______        , _______        ,                      _______        , _______        , KC_0
+                                                       _______         , _______        , _______        ,                      _______        , KC_0           , _______
                                                     //|----------------+----------------+----------------|                     |----------------+----------------+----------------|
     ),
     [_TWO] = LAYOUT_split_3x6_3(
